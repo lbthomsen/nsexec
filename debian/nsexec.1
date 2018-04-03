@@ -1,0 +1,72 @@
+.\"                                      Hey, EMACS: -*- nroff -*-
+.\" First parameter, NAME, should be all caps
+.\" Second parameter, SECTION, should be 1-8, maybe w/ subsection
+.\" other parameters are allowed: see man(7), man(1)
+.TH NSEXEC SECTION "February 11, 2011"
+.\" Please adjust this date whenever revising the manpage.
+.\"
+.\" Some roff macros, for reference:
+.\" .nh        disable hyphenation
+.\" .hy        enable hyphenation
+.\" .ad l      left justify
+.\" .ad b      justify to both left and right margins
+.\" .nf        disable filling
+.\" .fi        enable filling
+.\" .br        insert line break
+.\" .sp <n>    insert n+1 empty lines
+.\" for manpage-specific macros, see man(7)
+.SH NAME
+nsexec \- program to do something
+.SH SYNOPSIS
+.B nsexec
+.RI [ -c ] [ -g ] [mnpiuU] [-P pidfile] " program [arguments]"
+.br
+.SH DESCRIPTION
+This manual page documents briefly the
+.B nsexec
+command.
+.PP
+.\" TeX users may be more comfortable with the \fB<whatever>\fP and
+.\" \fI<whatever>\fP escape sequences to invode bold face and italics,
+.\" respectively.
+\fBnsexec\fP is a program that launches commands in a set of new
+namespaces.
+.SH OPTIONS
+These programs follow the usual GNU command line syntax, with long
+options starting with two dashes (`-').
+A summary of options is included below.
+For a complete description, see the Info files.
+.TP
+.B \-h, \-\-help
+Show summary of options.
+.TP
+.B \-c
+Use 'clone' rather than 'unshare' to create the namespaces.  This
+is required for some namespaces, including user and pid.
+.B \-m
+Create a new mounts namespace
+.B \-g
+Launch in a new cgroup as well
+.B \-n
+New network namespace
+.B \-u
+New uts namespace (hostname)
+.B \-i
+New IPC namespace
+.B \-U
+New user namespace
+.B \-p
+New pid namespace
+.B \-P
+Name of a file into which to write the new task's pid.
+.br
+.SH EXAMPLES
+.B nsexec -cmpnui /bin/bash
+Launch a bash shell in a task with private mounts, pid, network,
+uts, and IPC namespaces.
+.br
+.SH AUTHOR
+nsexec was written by <upstream author>.
+.PP
+This manual page was written by Serge Hallyn <serge.hallyn@ubuntu.com>,
+for the Debian project (and may be used by others).

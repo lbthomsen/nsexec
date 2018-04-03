@@ -1,0 +1,64 @@
+#!/bin/bash
+
+# Copyright © 2012 Serge Hallyn <serge.hallyn@canonical.com>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 2, as
+# published by the Free Software Foundation.
+
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, write to the Free Software Foundation, Inc.,
+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+# Convert a container to use user namespaces
+# 1. add the lxc.uidmap lines to the config file
+# 2. shift uids in the rootfs
+
+if [ $(id -u) -ne 0 ]; then
+	echo "Must be called as root"
+	exit 1
+fi
+
+if [ $# -lt 2 ]; then
+	echo "Usage: $0 container-name base-uid"
+	echo " for example, to make container q2's root be uid 100000 on the"
+	echo " host, you would use:"
+	echo " $0 q2 100000"
+	exit 1
+fi
+container=$1
+uid=$2
+if [ ! -d /var/lib/lxc/$container ]; then
+	echo "Container $container not found"
+	exit 1
+fi
+
+function is_int() { return $(test "$@" -eq "$@" > /dev/null 2>&1); } 
+
+if ! $(is_int "${uid}"); then
+	echo "${uid} must be an integer"
+	exit 1
+fi
+
+if [ $uid -lt 10000 ]; then
+	echo "uid should be greater than 10000"
+	exit 1
+fi
+grep -q lxc.uidmap /var/lib/lxc/$container/config && { echo "$container already converted"; exit 1; }
+
+# give 10000 uids by default
+range=10000
+cat >> /var/lib/lxc/$container/config << EOF
+lxc.id_map = u 0 ${uid} $range
+lxc.id_map = g 0 ${uid} $range
+EOF
+
+uidmapshift -b /var/lib/lxc/$container/rootfs 0 $uid $range
+
+echo "Container $container has been converted"
+exit 0

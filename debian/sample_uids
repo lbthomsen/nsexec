@@ -1,0 +1,4 @@
+#Format: a:b:c where a is the caller's uid, b is the first id on the host,
+#and c is the last.  So for instance:
+#1000:100000:110000
+# would allow uid 1000 to map ids 100000 through 110000

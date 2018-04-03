@@ -1,0 +1,15 @@
+Source: nsexec
+Section: misc
+Priority: extra
+Maintainer: Serge Hallyn <serge.hallyn@ubuntu.com>
+Build-Depends: debhelper (>= 7.0.50~)
+Standards-Version: 3.9.1
+Homepage: http://linux-cr.org
+Vcs-Browser: http://code.launchpad.net/~serge-hallyn/+junk/nsexec
+
+Package: nsexec
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Launch programs in new namespaces
+ Provides /usr/bin/nsexec which is used to launch programs in
+ new namespaces.

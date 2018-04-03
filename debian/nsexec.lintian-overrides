@@ -1,0 +1,1 @@
+nsexec: setuid-binary usr/bin/uidperms 4755 root/root

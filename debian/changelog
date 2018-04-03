@@ -1,0 +1,164 @@
+nsexec (1.22+nmu1) UNRELEASED; urgency=medium
+
+  * Non-maintainer upload.
+
+ -- Lars Boegild Thomsen <lbthomsen@optimal-dynamics.com>  Tue, 03 Apr 2018 22:02:13 +0800
+
+nsexec (1.22) saucy; urgency=low
+
+  * usernsexec: don't run newxidmap if there was no mapping to effect.
+
+ -- Serge Hallyn <serge.hallyn@ubuntu.com>  Tue, 16 Jul 2013 15:01:20 -0500
+
+nsexec (1.21) saucy; urgency=low
+
+  * usernsexec: drop supplemental groups
+
+ -- Serge Hallyn <serge.hallyn@ubuntu.com>  Wed, 08 May 2013 16:46:34 -0500
+
+nsexec (1.20saucy) saucy; urgency=low
+
+  * rebuild for saucy
+
+ -- Serge Hallyn <serge.hallyn@ubuntu.com>  Thu, 02 May 2013 21:19:42 -0500
+
+nsexec (1.20) raring; urgency=low
+
+  * update order/format of lxc.id_map entries to  match new upstream lxc
+    support.
+
+ -- Serge Hallyn <serge.hallyn@ubuntu.com>  Thu, 11 Apr 2013 12:10:22 -0500
+
+nsexec (1.19) raring; urgency=low
+
+  * add usernsexec program
+
+ -- Serge Hallyn <serge.hallyn@ubuntu.com>  Tue, 12 Mar 2013 11:05:00 -0500
+
+nsexec (1.18) raring; urgency=low
+
+  * cleaner simpler version nof usernsselfmap.
+  * add options to nsexec to make it more useful for user namespaces.
+
+ -- Serge Hallyn <serge.hallyn@ubuntu.com>  Thu, 07 Mar 2013 14:40:16 -0600
+
+nsexec (1.17) raring; urgency=low
+
+  * add usernsselfmap program to demonstrate creating a user ns completely
+    without privilege (only mapping uid 0 in container to your host uid).
+
+ -- Serge Hallyn <serge.hallyn@ubuntu.com>  Wed, 06 Mar 2013 16:16:04 -0600
+
+nsexec (1.16) raring; urgency=low
+
+  * Update container-userns-convert to use new uidmapshift semantics.
+
+ -- Serge Hallyn <serge.hallyn@ubuntu.com>  Wed, 06 Mar 2013 14:56:56 -0600
+
+nsexec (1.15) raring; urgency=low
+
+  * Apply patch from Dwight to use nftw in uidmapshift (and other
+    improvements).
+
+ -- Serge Hallyn <serge.hallyn@ubuntu.com>  Mon, 25 Feb 2013 15:00:30 -0600
+
+nsexec (1.14) raring; urgency=low
+
+  * Remove debugging code accidentally left in.
+
+ -- Serge Hallyn <serge.hallyn@ubuntu.com>  Tue, 15 Jan 2013 10:40:18 -0600
+
+nsexec (1.13) raring; urgency=low
+
+  * uidmapshift: use lchmod in place of chmod, make less verbose, add DEBUG
+    compile time option, and fix up wrong variable names.
+
+ -- Serge Hallyn <serge.hallyn@ubuntu.com>  Fri, 11 Jan 2013 20:56:07 -0600
+
+nsexec (1.0-12) raring; urgency=low
+
+  * build for raring
+
+ -- Serge Hallyn <serge.hallyn@ubuntu.com>  Tue, 04 Dec 2012 21:11:17 -0600
+
+nsexec (1.0-11) quantal; urgency=low
+
+  * rename convert_container to container-userns-convert, and have Makefile
+    install it to /usr/bin.
+
+ -- Serge Hallyn <serge.hallyn@ubuntu.com>  Wed, 31 Oct 2012 05:39:11 +0100
+
+nsexec (1.0-10) quantal; urgency=low
+
+  * Restore suid and sgid after chowning in uidmapshift.
+  * Add a 'shift-container-uids' script to set up a container for use with
+    user namespaces.
+  * Drop quilt patches and switch to pure bzr format.
+
+ -- Serge Hallyn <serge.hallyn@ubuntu.com>  Tue, 30 Oct 2012 16:09:54 +0100
+
+nsexec (1.0-9) quantal; urgency=low
+
+  * Fix help in uidmapshift.
+
+ -- Serge Hallyn <serge.hallyn@ubuntu.com>  Mon, 29 Oct 2012 15:04:40 +0100
+
+nsexec (1.0-8) quantal; urgency=low
+
+  * add usernstest and uidmapshift programs.
+
+ -- Serge Hallyn <serge.hallyn@ubuntu.com>  Mon, 25 Jun 2012 16:42:50 -0500
+
+nsexec (1.0-7) quantal; urgency=low
+
+  * Add comments to the sample /etc/id_permissions/* files, and insert them
+    through debian/rules rather than Makefile.
+
+ -- Serge Hallyn <serge.hallyn@ubuntu.com>  Thu, 10 May 2012 14:36:08 -0700
+
+nsexec (1.0-6) quantal; urgency=low
+
+  * install /etc/id_permission/{u,g}ids
+  * Have uidmap respect /etc/id_permission/{u,g}ids
+  * Make uidmap setuid-root
+
+ -- Serge Hallyn <serge.hallyn@ubuntu.com>  Thu, 10 May 2012 13:58:18 -0700
+
+nsexec (1.0-5) quantal; urgency=low
+
+  * build for quantal
+  * add #define for CLONE_NEWNS which appears to no longer ship in libc
+    headers.
+
+ -- Serge Hallyn <serge.hallyn@ubuntu.com>  Wed, 09 May 2012 10:30:39 -0700
+
+nsexec (1.0-4.11.10) oneiric; urgency=low
+
+  * build for oneiric in userns-natty
+
+ -- Serge Hallyn <serge.hallyn@ubuntu.com>  Mon, 11 Jul 2011 13:45:48 -0500
+
+nsexec (1.0-4) natty; urgency=low
+
+  * bugfix: add -e to getopt call (and use WEXITSTATUS).
+
+ -- Serge Hallyn <serge.hallyn@ubuntu.com>  Mon, 11 Jul 2011 11:55:59 -0500
+
+nsexec (1.0-3) natty; urgency=low
+
+  * add '-e' option to return the child's return value.  By default, as
+    before, return 0 as long as clone succeeded.
+
+ -- Serge Hallyn <serge.hallyn@ubuntu.com>  Mon, 11 Jul 2011 11:52:02 -0500
+
+nsexec (1.0-2) natty; urgency=low
+
+  * Fix package build
+
+ -- Serge Hallyn <serge.hallyn@ubuntu.com>  Fri, 11 Feb 2011 14:28:02 -0600
+
+nsexec (1.0-1) natty; urgency=low
+
+  * Initial release
+
+ -- Serge Hallyn <serge.hallyn@ubuntu.com>  Fri, 11 Feb 2011 13:16:14 -0600
