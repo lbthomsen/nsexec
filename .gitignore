@@ -1,0 +1,11 @@
+newuidshell 
+nsexec
+uidmap
+uidmapshift
+usernsexec
+usernsselfmap
+usernstest
+debian/source
+debian/nsexec
+debian/patches
+debian/.debhelper
